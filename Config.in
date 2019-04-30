@@ -1,0 +1,2 @@
+source "$BR2_EXTERNAL_BUSINESSCARD_PATH/package/sunxi-tools-f1c100s/Config.in.host"
+source "$BR2_EXTERNAL_BUSINESSCARD_PATH/package/sunxi-tools-f1c100s/Config.in"
