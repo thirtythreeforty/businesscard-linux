@@ -1,0 +1,33 @@
+From 4048a5c519a86eab2805f4f07fe9f5c6c8a1fe91 Mon Sep 17 00:00:00 2001
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Thu, 16 Aug 2018 17:30:18 +0200
+Subject: [PATCH] mtd: declare MTD_PARTITIONS symbol in Kconfig
+
+UBI selects MTD_PARTITIONS which is the symbol to compile
+drivers/mtd/mtdpart.c. Unfortunately, the symbol was not defined in
+Kconfig and this worked only with board files defining it. Fix this by
+adding a boolean in Kconfig so boards defined by defconfig files only
+will work as expected.
+
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Reviewed-by: Boris Brezillon <boris.brezillon@bootlin.com>
+---
+ drivers/mtd/Kconfig | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/mtd/Kconfig b/drivers/mtd/Kconfig
+index 9341d518f3e..d98457e2239 100644
+--- a/drivers/mtd/Kconfig
++++ b/drivers/mtd/Kconfig
+@@ -1,5 +1,8 @@
+ menu "MTD Support"
+ 
++config MTD_PARTITIONS
++	bool
++
+ config MTD
+ 	bool "Enable Driver Model for MTD drivers"
+ 	depends on DM
+-- 
+2.21.0
+

@@ -1,0 +1,74 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR X11)
+/*
+ * Copyright 2019 George Hilliard <thirtythreeforty@gmail.com>
+ */
+
+/dts-v1/;
+#include "suniv-f1c100s.dtsi"
+
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+	model = "George Hilliard's business card";
+	compatible = "licheepi,licheepi-nano", "allwinner,suniv-f1c100s",
+		     "allwinner,suniv";
+
+	aliases {
+		serial0 = &uart0;
+		spi0 = &spi0;
+	};
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+};
+
+&spi0 {
+    pinctrl-names = "default";
+    pinctrl-0 = <&spi0_pins_a>;
+    status = "okay";
+    flash: w25q64@0 {
+        #address-cells = <1>;
+        #size-cells = <1>;
+        compatible = "winbond,w25q64", "jedec,spi-nor";
+        reg = <0>;
+        spi-max-frequency = <50000000>;
+        partitions {
+            compatible = "fixed-partitions";
+            #address-cells = <1>;
+            #size-cells = <1>;
+
+            partition@0 {
+                label = "u-boot";
+                reg = <0x000000 0x80000>;
+                read-only;
+            };
+
+            partition@110000 {
+                label = "rootubi";
+                reg = <0x80000 0x7800000>;
+                read-only;
+            };
+        };
+    };
+};
+
+&otg_sram {
+	status = "okay";
+};
+
+&uart0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart0_pins_a>;
+	status = "okay";
+};
+
+&usb_otg {
+	dr_mode = "otg";
+	status = "okay";
+};
+
+&usbphy {
+	usb0_id_det-gpio = <&pio 4 2 GPIO_ACTIVE_HIGH>; /* PE2 */
+	status = "okay";
+};
