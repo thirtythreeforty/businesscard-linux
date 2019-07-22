@@ -21,6 +21,13 @@
 	chosen {
 		stdout-path = "serial0:115200n8";
 	};
+
+	reg_vcc3v3: vcc3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc3v3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+	};
 };
 
 &spi0 {
@@ -46,11 +53,18 @@
 
             partition@110000 {
                 label = "rootubi";
-                reg = <0x80000 0x7800000>;
-                read-only;
+                reg = <0x80000 0x780000>;
+                //read-only;
             };
         };
     };
+};
+
+&mmc0 {
+	vmmc-supply = <&reg_vcc3v3>;
+	bus-width = <4>;
+	broken-cd;
+	status = "okay";
 };
 
 &otg_sram {
@@ -64,7 +78,7 @@
 };
 
 &usb_otg {
-	dr_mode = "otg";
+	dr_mode = "peripheral";
 	status = "okay";
 };
 
