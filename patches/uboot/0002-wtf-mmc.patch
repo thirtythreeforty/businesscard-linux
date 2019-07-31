@@ -1,0 +1,28 @@
+From 885f592f7ea2c607be5772db89712aa78b4510d6 Mon Sep 17 00:00:00 2001
+From: George Hilliard <thirtythreeforty@gmail.com>
+Date: Sun, 16 Jun 2019 15:56:06 -0500
+Subject: [PATCH 2/2] wtf mmc
+
+---
+ arch/arm/dts/sunxi-u-boot.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm/dts/sunxi-u-boot.dtsi b/arch/arm/dts/sunxi-u-boot.dtsi
+index fdd4c80aa46..d3abd4e8e3c 100644
+--- a/arch/arm/dts/sunxi-u-boot.dtsi
++++ b/arch/arm/dts/sunxi-u-boot.dtsi
+@@ -1,9 +1,11 @@
+ #include <config.h>
+ 
+ / {
++	/* WTF do you just assume we have an mmc?
+ 	aliases {
+ 		mmc1 = &mmc2;
+ 	};
++	*/
+ 
+ 	binman {
+ 		filename = "u-boot-sunxi-with-spl.bin";
+-- 
+2.22.0
+

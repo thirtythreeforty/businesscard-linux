@@ -1,0 +1,24 @@
+From 9cc484071b0ed5f7d5ed411827ab8e908c2bee00 Mon Sep 17 00:00:00 2001
+From: George Hilliard <thirtythreeforty@gmail.com>
+Date: Sun, 16 Jun 2019 14:40:47 -0500
+Subject: [PATCH 1/2] HACK businesscard dtb
+
+---
+ arch/arm/dts/Makefile | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
+index 0e2ffdb87f0..004bc39d918 100644
+--- a/arch/arm/dts/Makefile
++++ b/arch/arm/dts/Makefile
+@@ -688,6 +688,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
+ 	mt7623n-bananapi-bpi-r2.dtb \
+ 	mt7629-rfb.dtb
+ 
++dtb-y += businesscard.dtb
+ targets += $(dtb-y)
+ 
+ # Add any required device tree compiler flags here
+-- 
+2.22.0
+
