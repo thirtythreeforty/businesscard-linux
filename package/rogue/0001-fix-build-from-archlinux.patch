@@ -1,0 +1,16 @@
+diff --git a/mdport.c b/mdport.c
+index 72fdbb7..5ff523e 100644
+--- a/mdport.c
++++ b/mdport.c
+@@ -259,9 +259,10 @@ md_hasclreol()
+ {
+ #if defined(clr_eol)
+ #ifdef NCURSES_VERSION
++TERMTYPE *tp = (TERMTYPE *) (cur_term);
+     if (cur_term == NULL)
+ 	return(0);
+-    if (cur_term->type.Strings == NULL)
++    if (tp->Strings == NULL)
+ 	return(0);
+ #endif
+     return((clr_eol != NULL) && (*clr_eol != 0));

@@ -1,0 +1,7 @@
+config BR2_PACKAGE_ROGUE
+	bool "rogue"
+	select BR2_PACKAGE_NCURSES
+	help
+	  The original dungeon crawl game
+
+	  http://www.roguebasin.com/index.php?title=Rogue

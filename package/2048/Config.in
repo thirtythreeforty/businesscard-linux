@@ -1,0 +1,7 @@
+config BR2_PACKAGE_2048
+	bool "2048"
+	select BR2_PACKAGE_NCURSES
+	help
+	  Console version of the game "2048" for GNU/Linux
+
+	  https://github.com/mevdschee/2048.c

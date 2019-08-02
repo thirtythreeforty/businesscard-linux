@@ -1,0 +1,11 @@
+--- a/src/Makefile.in	2019-08-04 20:02:11.495635471 -0500
++++ b/src/Makefile.in	2012-12-21 13:56:49.000000000 -0600
+@@ -199,7 +199,7 @@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-execgamesdir = $(prefix)/games
++execgamesdir = $(prefix)/bin
+ AM_CPPFLAGS = -DSYSTEM_NKI_DIR=\"$(datadir)/games/robotfindskitten\"
+ robotfindskitten_SOURCES = robotfindskitten.c 
+ SPLINT_SUPPRESSIONS = +charintliteral +charindex

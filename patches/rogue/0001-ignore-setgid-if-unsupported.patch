@@ -1,0 +1,38 @@
+diff --git a/mdport.c b/mdport.c
+index 72fdbb7..6f90ebb 100644
+--- a/mdport.c
++++ b/mdport.c
+@@ -29,6 +29,7 @@
+     SUCH DAMAGE.
+ */
+ 
++#include <errno.h>
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -377,8 +378,10 @@ md_normaluser()
+ #else
+ 	if (0) {
+ #endif
+-		perror("Could not drop setgid privileges.  Aborting.");
+-		exit(1);
++		if(errno != ENOSYS) {
++			perror("Could not drop setgid privileges.  Aborting.");
++			exit(1);
++		}
+     }
+ 
+ #if defined(HAVE_SETRESUID)
+@@ -390,8 +393,10 @@ md_normaluser()
+ #else
+ 	if (0) {
+ #endif
+-	perror("Could not drop setuid privileges.  Aborting.");
+-	exit(1);
++		if(errno != ENOSYS) {
++			perror("Could not drop setuid privileges.  Aborting.");
++			exit(1);
++		}
+     }
+ #endif
+ }

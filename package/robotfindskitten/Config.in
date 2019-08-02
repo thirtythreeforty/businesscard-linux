@@ -1,0 +1,7 @@
+config BR2_PACKAGE_ROBOTFINDSKITTEN
+	bool "robotfindskitten"
+	select BR2_PACKAGE_NCURSES
+	help
+	  A Zen simulation.
+
+	  http://robotfindskitten.org/
