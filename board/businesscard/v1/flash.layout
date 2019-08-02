@@ -1,2 +1,2 @@
-00000000:000fffff uboot
-00100000:007fffff rootubi
+00000000:0007ffff uboot
+00080000:007fffff rootubi
