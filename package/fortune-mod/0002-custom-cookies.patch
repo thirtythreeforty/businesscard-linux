@@ -1,0 +1,20 @@
+diff --git a/fortune-mod/CMakeLists.txt b/fortune-mod/CMakeLists.txt
+index dbe120d..cc272b8 100644
+--- a/fortune-mod/CMakeLists.txt
++++ b/fortune-mod/CMakeLists.txt
+@@ -261,6 +261,7 @@ SET (COOKIES
+     paradoxum
+     zippy
+     debian
++    CACHE STRING "Cookies to include"
+ )
+ 
+ SET (OFFENSIVE_COOKIES
+@@ -290,6 +291,7 @@ SET (OFFENSIVE_COOKIES
+     songs-poems
+     vulgarity
+     zippy
++    CACHE STRING "Offensive cookies to include"
+ )
+ 
+ ADD_SUBDIRECTORY("datfiles")

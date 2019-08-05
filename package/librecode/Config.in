@@ -1,0 +1,8 @@
+config BR2_PACKAGE_LIBRECODE
+	bool "librecode"
+	depends on BR2_USE_WCHAR
+	select BR2_PACKAGE_LIBICONV
+	help
+	  Converts files between various character sets and usages
+
+	  https://github.com/rrthomas/recode

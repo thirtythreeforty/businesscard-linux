@@ -1,0 +1,11 @@
+diff --git a/fortune-mod/datfiles/CMakeLists.txt b/fortune-mod/datfiles/CMakeLists.txt
+index 00aa838..aa23f4c 100644
+--- a/fortune-mod/datfiles/CMakeLists.txt
++++ b/fortune-mod/datfiles/CMakeLists.txt
+@@ -1,4 +1,5 @@
+-SET (_strfile  "${CMAKE_CURRENT_BINARY_DIR}/../strfile")
++SET(STRFILE_PATH "${CMAKE_CURRENT_BINARY_DIR}/../strfile" CACHE STRING "Use host strfile (for cross compilation)")
++SET (_strfile  "${STRFILE_PATH}")
+ FOREACH(c ${COOKIES})
+     SET(TARGET_NAME "cookie__${c}")
+     SET(DEST "${c}.dat")

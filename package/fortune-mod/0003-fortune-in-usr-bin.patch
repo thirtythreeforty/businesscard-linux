@@ -1,0 +1,13 @@
+diff --git a/fortune-mod/CMakeLists.txt b/fortune-mod/CMakeLists.txt
+index dbe120d..cf36ad0 100644
+--- a/fortune-mod/CMakeLists.txt
++++ b/fortune-mod/CMakeLists.txt
+@@ -152,7 +152,7 @@ ENDMACRO()
+ my_exe(
+     "fortune"
+     "fortune/fortune.c"
+-    "games"
++    "bin"
+ )
+ 
+ my_exe(

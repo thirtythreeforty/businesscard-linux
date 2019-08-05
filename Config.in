@@ -1,5 +1,8 @@
 source "$BR2_EXTERNAL_BUSINESSCARD_PATH/package/sunxi-tools-f1c100s/Config.in.host"
 source "$BR2_EXTERNAL_BUSINESSCARD_PATH/package/sunxi-tools-f1c100s/Config.in"
 source "$BR2_EXTERNAL_BUSINESSCARD_PATH/package/2048/Config.in"
+source "$BR2_EXTERNAL_BUSINESSCARD_PATH/package/fortune-mod/Config.in"
 source "$BR2_EXTERNAL_BUSINESSCARD_PATH/package/robotfindskitten/Config.in"
 source "$BR2_EXTERNAL_BUSINESSCARD_PATH/package/rogue/Config.in"
+
+source "$BR2_EXTERNAL_BUSINESSCARD_PATH/package/librecode/Config.in"

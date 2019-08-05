@@ -1,0 +1,32 @@
+config BR2_PACKAGE_FORTUNE_MOD
+	bool "fortune-mod"
+	select BR2_PACKAGE_LIBRECODE
+	help
+	  The Fortune Cookie Program from BSD games
+
+	  https://www.shlomifish.org/open-source/projects/fortune-mod/
+
+if BR2_PACKAGE_FORTUNE_MOD
+
+config BR2_PACKAGE_FORTUNE_MOD_COOKIES
+	string "fortune cookie files"
+	help
+	  Specify which fortunes to include in a semicolon-separated list.
+	  If empty, include them all.
+
+config BR2_PACKAGE_FORTUNE_MOD_OFFENSIVE
+	bool "offensive cookies"
+	help
+	  Enable potentially-offensive cookies.
+
+if BR2_PACKAGE_FORTUNE_MOD_OFFENSIVE
+
+config BR2_PACKAGE_FORTUNE_MOD_OCOOKIES
+	string "offensive fortune cookie files"
+	help
+	  Specify which offensive fortunes to include in a semicolon-separated
+	  list.  If empty, include them all.
+
+endif
+
+endif
