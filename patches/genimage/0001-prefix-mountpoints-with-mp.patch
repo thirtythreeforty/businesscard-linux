@@ -1,0 +1,29 @@
+commit f2b104aa68a0dff3f0bf6b481f9724722cb01939
+Author: George Hilliard <thirtythreeforty@gmail.com>
+Date:   Wed Aug 7 00:35:20 2019 -0500
+
+    Prefix mountpoints with mp- to avoid conflict with "root"
+    
+    Specifying an image with mountpoint "/root" would cause the mountpoint's
+    location to be "root", which conflicts with the location for the actual
+    filesystem root.
+    
+    Fix this by appending a prefix.
+    
+    Closes #67 on GitHub.
+    
+    Signed-off-by: George Hilliard <thirtythreeforty@gmail.com>
+
+diff --git a/genimage.c b/genimage.c
+index ca2c6d6..aafd3b7 100644
+--- a/genimage.c
++++ b/genimage.c
+@@ -392,7 +392,7 @@ static struct mountpoint *add_mountpoint(const char *path)
+ 	path_sanitized = sanitize_path(path);
+ 	mp = xzalloc(sizeof(*mp));
+ 	mp->path = strdup(path);
+-	xasprintf(&mp->mountpath, "%s/%s", tmppath(), path_sanitized);
++	xasprintf(&mp->mountpath, "%s/mp-%s", tmppath(), path_sanitized);
+ 	list_add_tail(&mp->list, &mountpoints);
+ 	free(path_sanitized);
+ 
