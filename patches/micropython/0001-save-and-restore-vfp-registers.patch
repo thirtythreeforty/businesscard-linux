@@ -1,0 +1,60 @@
+commit 34c04d2319cdfae01ed7bf7f9e341d69b86d751a
+Author: Damien George <damien.p.george@gmail.com>
+Date:   Mon Jun 17 23:19:34 2019 +1000
+
+    py/nlrthumb: Save and restore VFP registers s16-s21 when CPU has them.
+    
+    These s16-s21 registers are used by gcc so need to be saved.  Future
+    versions of gcc (beyond v9.1.0), or other compilers, may eventually need
+    additional registers saved/restored.
+    
+    See issue #4844.
+
+diff --git a/py/nlr.h b/py/nlr.h
+index 90595a12d..8ce5cf0f4 100644
+--- a/py/nlr.h
++++ b/py/nlr.h
+@@ -54,7 +54,14 @@
+     #endif
+ #elif defined(__thumb2__) || defined(__thumb__) || defined(__arm__)
+     #define MICROPY_NLR_THUMB (1)
+-    #define MICROPY_NLR_NUM_REGS (10)
++    #if defined(__SOFTFP__)
++        #define MICROPY_NLR_NUM_REGS (10)
++    #else
++        // With hardware FP registers s16-s31 are callee save so in principle
++        // should be saved and restored by the NLR code.  gcc only uses s16-s21
++        // so only save/restore those as an optimisation.
++        #define MICROPY_NLR_NUM_REGS (10 + 6)
++    #endif
+ #elif defined(__xtensa__)
+     #define MICROPY_NLR_XTENSA (1)
+     #define MICROPY_NLR_NUM_REGS (10)
+diff --git a/py/nlrthumb.c b/py/nlrthumb.c
+index 99061e62c..32fa6b117 100644
+--- a/py/nlrthumb.c
++++ b/py/nlrthumb.c
+@@ -63,6 +63,11 @@ __attribute__((naked)) unsigned int nlr_push(nlr_buf_t *nlr) {
+     "str    r10, [r0, #36]      \n" // store r10 into nlr_buf
+     "str    r11, [r0, #40]      \n" // store r11 into nlr_buf
+     "str    r13, [r0, #44]      \n" // store r13=sp into nlr_buf
++    #if MICROPY_NLR_NUM_REGS == 16
++    "vstr   d8, [r0, #48]       \n" // store s16-s17 into nlr_buf
++    "vstr   d9, [r0, #56]       \n" // store s18-s19 into nlr_buf
++    "vstr   d10, [r0, #64]      \n" // store s20-s21 into nlr_buf
++    #endif
+     "str    lr, [r0, #8]        \n" // store lr into nlr_buf
+ #endif
+ 
+@@ -116,6 +121,11 @@ NORETURN void nlr_jump(void *val) {
+     "ldr    r10, [r0, #36]      \n" // load r10 from nlr_buf
+     "ldr    r11, [r0, #40]      \n" // load r11 from nlr_buf
+     "ldr    r13, [r0, #44]      \n" // load r13=sp from nlr_buf
++    #if MICROPY_NLR_NUM_REGS == 16
++    "vldr   d8, [r0, #48]       \n" // load s16-s17 from nlr_buf
++    "vldr   d9, [r0, #56]       \n" // load s18-s19 from nlr_buf
++    "vldr   d10, [r0, #64]      \n" // load s20-s21 from nlr_buf
++    #endif
+     "ldr    lr, [r0, #8]        \n" // load lr from nlr_buf
+ #endif
+     "movs   r0, #1              \n" // return 1, non-local return

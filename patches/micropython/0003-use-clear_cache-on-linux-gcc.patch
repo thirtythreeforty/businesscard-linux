@@ -1,0 +1,27 @@
+commit 62b00dd5d8cd6207147d37222e1c249ef6381841
+Author: David Lechner <david@pybricks.com>
+Date:   Thu Jun 27 13:36:15 2019 -0500
+
+    py/asmarm: Use __clear_cache on Linux/GCC when creating new asm code.
+    
+    Comes from https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/caches-and-self-modifying-code
+    
+    This fixes a crash when running MicroPython using qemu-arm.
+
+diff --git a/py/asmarm.c b/py/asmarm.c
+index f2221f8a9..2a84f985b 100644
+--- a/py/asmarm.c
++++ b/py/asmarm.c
+@@ -40,7 +40,11 @@
+ 
+ void asm_arm_end_pass(asm_arm_t *as) {
+     if (as->base.pass == MP_ASM_PASS_EMIT) {
+-#ifdef __arm__
++#if defined(__linux__) && defined(__GNUC__)
++	char *start = mp_asm_base_get_code(&as->base);
++	char *end = start + mp_asm_base_get_code_size(&as->base);
++	__clear_cache(start, end);
++#elif defined(__arm__)
+         // flush I- and D-cache
+         asm volatile(
+                 "0:"
