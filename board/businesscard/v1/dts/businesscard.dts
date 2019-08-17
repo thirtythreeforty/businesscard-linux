@@ -28,6 +28,26 @@
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 	};
+
+	leds {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 = <&led_pins>;
+
+		heartbeat {
+			label = "Heartbeat";
+			gpios = <&pio 3 7 GPIO_ACTIVE_LOW>;
+			default-state = "on";
+			linux,default-trigger = "heartbeat";
+		};
+	};
+};
+
+&pio {
+	led_pins: led_pins {
+		pins = "PD7";
+		function = "gpio_out";
+	};
 };
 
 &spi0 {
