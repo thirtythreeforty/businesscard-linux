@@ -1,0 +1,11 @@
+config BR2_PACKAGE_BUSINESSCARD_FLASHDRIVE
+	bool "businesscard-flashdrive"
+	select BR2_PACKAGE_HOST_GENIMAGE
+	select BR2_PACKAGE_HOST_DOSFSTOOLS
+	select BR2_PACKAGE_HOST_MTOOLS
+	help
+	  The "flash drive" image that appears when you plug my business card into
+	  a PC.
+
+	  https://github.com/thirtythreeforty
+
