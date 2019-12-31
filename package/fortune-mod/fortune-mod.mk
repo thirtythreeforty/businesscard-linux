@@ -9,6 +9,7 @@ FORTUNE_MOD_SITE = https://github.com/shlomif/fortune-mod/archive
 FORTUNE_MOD_LICENSE = GPL-2.0
 FORTUNE_MOD_LICENSE_FILES = COPYING
 FORTUNE_MOD_DEPENDENCIES = host-fortune-mod librecode
+HOST_FORTUNE_MOD_DEPENDENCIES = host-librecode
 FORTUNE_MOD_SUBDIR = fortune-mod
 FORTUNE_MOD_SUPPORTS_IN_SOURCE_BUILD = NO
 

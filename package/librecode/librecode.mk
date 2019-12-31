@@ -13,3 +13,4 @@ LIBRECODE_INSTALL_STAGING = YES
 LIBRECODE_DEPENDENCIES = libiconv
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))
