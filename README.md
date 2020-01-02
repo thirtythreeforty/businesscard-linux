@@ -52,7 +52,18 @@ You can erase the card after it boots by simply logging in (as `root`) and erasi
 
 Don't erase it unless you're prepared to burn a new image!
 
+## License
+
+Subject to the below exceptions, code is released under the GNU General Public License, version 2 or (at your option) any later version.
+See also the [Buildroot license notice][buildroot-license] for more nuances about the meaning of this license.
+
+Patches are not covered by this license. Instead, they are covered by the license of the software to which the patches are applied.
+
+Finally, files in the `businesscard-flashdrive` package, including its README, my resume, and my photography, remain proprietary and are not released under the GPL.
+If you would like to build your own firmware based on this, simply remove those files, or deselect the package during build.
+
 [blog-post]: https://www.thirtythreeforty.net/posts/2019/12/my-business-card-runs-linux/
 [linux-f1c100s]: https://github.com/thirtythreeforty/linux.git
 [uboot-f1c100s]: https://github.com/thirtythreeforty/u-boot.git
 [lichee-nano]: https://www.seeedstudio.com/Sipeed-Lichee-Nano-Linux-Development-Board-16M-Flash-WiFi-Version-p-2893.html
+[buildroot-license]: https://buildroot.org/downloads/manual/manual.html#legal-info-buildroot
