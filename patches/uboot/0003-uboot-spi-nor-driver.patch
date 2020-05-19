@@ -1,0 +1,14 @@
+--- a/drivers/mtd/spi/spi-nor-ids.c	2019-07-30 19:16:16.000000000 -0700
++++ b/drivers/mtd/spi/spi-nor-ids.c	2020-05-18 18:26:08.972315961 -0700
+@@ -267,6 +267,11 @@
+ 			SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB)
+ 	},
+ 	{
++		INFO("xt25f128b", 0x0b4018, 0, 64 * 1024, 256,
++			SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ |
++			SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB)
++	},
++	{
+ 		INFO("w25q128jv", 0xef7018, 0, 64 * 1024, 256,
+ 			SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ |
+ 			SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB)
