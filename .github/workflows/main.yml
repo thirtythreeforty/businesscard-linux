@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Cache downloads
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: dl/
         key: dl
@@ -19,7 +19,7 @@ jobs:
         cd buildroot
         make BR2_EXTERNAL=$PWD/.. thirtythreeforty_businesscard_defconfig
         make
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v4
       with:
         name: flash.bin
         path: buildroot/output/images/flash.bin
